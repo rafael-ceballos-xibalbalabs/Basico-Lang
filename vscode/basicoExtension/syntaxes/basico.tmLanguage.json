@@ -1,0 +1,158 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Basico Lang",
+  "scopeName": "source.basico",
+  "fileTypes": ["basico", "top"],
+  "patterns": [
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords-conditional" },
+    { "include": "#keywords-loop" },
+    { "include": "#keywords-return" },
+    { "include": "#constants-language" },
+    { "include": "#function-declaration" },
+    { "include": "#storage-keywords" },
+    { "include": "#builtin-functions" },
+    { "include": "#method-calls" },
+    { "include": "#property-access" },
+    { "include": "#function-calls" },
+    { "include": "#operators" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "strings": {
+      "name": "string.quoted.double.basico",
+      "begin": "\"",
+      "end": "\"",
+      "comment": "Basico Lang no soporta secuencias de escape dentro de cadenas (MakeStringLiteral copia el texto literal hasta la siguiente comilla), asi que no hay 'patterns' internos para \\\" ni similares."
+    },
+
+    "numbers": {
+      "name": "constant.numeric.basico",
+      "comment": "Enteros y decimales; admite '_' como separador visual (1_000). Todo numero es un double en tiempo de ejecucion.",
+      "match": "\\b[0-9][0-9_]*(\\.[0-9_]+)?\\b"
+    },
+
+    "keywords-conditional": {
+      "match": "\\b(sino|si)\\b",
+      "name": "keyword.control.conditional.basico"
+    },
+
+    "keywords-loop": {
+      "comment": "repetir = while, repetir_mientras = do...while, iterar = foreach, repetir_hasta = for clasico. 'en' es la palabra fija de la gramatica de 'iterar ... en ...'.",
+      "match": "\\b(repetir_mientras|repetir_hasta|repetir|iterar|en)\\b",
+      "name": "keyword.control.loop.basico"
+    },
+
+    "keywords-return": {
+      "match": "\\b(devolver)\\b",
+      "name": "keyword.control.flow.basico"
+    },
+
+    "constants-language": {
+      "match": "\\b(verdadero|falso|nulo)\\b",
+      "name": "constant.language.basico"
+    },
+
+    "function-declaration": {
+      "comment": "'funcion nombre(' - resalta la palabra clave y el nombre declarado por separado. Las closures anonimas (funcion(x) {...}) no calzan aqui y caen en 'storage-keywords'.",
+      "match": "\\b(funcion)\\b\\s+([a-zA-Z_]+)",
+      "captures": {
+        "1": { "name": "storage.type.function.basico" },
+        "2": { "name": "entity.name.function.basico" }
+      }
+    },
+
+    "storage-keywords": {
+      "match": "\\b(variable|funcion)\\b",
+      "name": "storage.type.basico"
+    },
+
+    "builtin-functions": {
+      "comment": "Funciones globales nativas registradas en Interpreter.RegisterGlobalFunctions.",
+      "match": "\\b(imprimir|imprimirLinea|type|load)\\b(?=\\s*\\()",
+      "name": "support.function.builtin.basico"
+    },
+
+    "method-calls": {
+      "comment": "Metodos nativos invocados con notacion de punto, p. ej. .contiene(...), .transformar(...).",
+      "match": "(\\.)\\s*([a-zA-Z_]+)\\s*(?=\\()",
+      "captures": {
+        "1": { "name": "punctuation.accessor.basico" },
+        "2": { "name": "entity.name.function.member.basico" }
+      }
+    },
+
+    "property-access": {
+      "comment": "Acceso .campo sin llamada (p. ej. instancias de struct una vez que 'estructura' este habilitada).",
+      "match": "(\\.)\\s*([a-zA-Z_]+)\\b",
+      "captures": {
+        "1": { "name": "punctuation.accessor.basico" },
+        "2": { "name": "variable.other.property.basico" }
+      }
+    },
+
+    "function-calls": {
+      "comment": "Cualquier identificador seguido de '(' que no haya sido capturado ya como builtin o metodo nativo: llamada a una funcion definida por el usuario.",
+      "match": "\\b([a-zA-Z_]+)\\b(?=\\s*\\()",
+      "captures": {
+        "1": { "name": "entity.name.function.basico" }
+      }
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "comment": "Operadores de dos caracteres primero, para que no los capture por accidente su prefijo de un caracter (=, <, >, !).",
+          "match": "==|!=|<=|>=|&&|\\|\\|",
+          "name": "keyword.operator.comparison.basico"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.assignment.basico"
+        },
+        {
+          "match": "<|>",
+          "name": "keyword.operator.relational.basico"
+        },
+        {
+          "match": "!",
+          "name": "keyword.operator.logical.basico"
+        },
+        {
+          "match": "\\+|-|\\*|/|%|\\^",
+          "name": "keyword.operator.arithmetic.basico"
+        }
+      ]
+    },
+
+    "punctuation": {
+      "patterns": [
+        {
+          "match": "[{}]",
+          "name": "punctuation.definition.block.basico"
+        },
+        {
+          "match": "[()]",
+          "name": "punctuation.definition.parameters.basico"
+        },
+        {
+          "match": "[\\[\\]]",
+          "name": "punctuation.definition.list.basico"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.comma.basico"
+        },
+        {
+          "match": ":",
+          "name": "punctuation.separator.colon.basico"
+        },
+        {
+          "match": ";",
+          "name": "punctuation.terminator.statement.basico"
+        }
+      ]
+    }
+  }
+}

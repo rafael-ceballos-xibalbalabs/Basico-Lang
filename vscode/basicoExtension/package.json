@@ -1,0 +1,38 @@
+{
+  "name": "basico-lang",
+  "displayName": "Basico Lang",
+  "description": "Resaltado de sintaxis (syntax highlighting) para Basico Lang, el intérprete educativo con palabras clave en español (variable, funcion, si/sino, repetir, iterar, ...).",
+  "version": "0.0.1",
+  "publisher": "xibalbalabs",
+  "license": "MIT",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "basico-lang",
+        "aliases": [
+          "Basico Lang",
+          "basico"
+        ],
+        "extensions": [
+          ".basico",
+          ".top"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "basico-lang",
+        "scopeName": "source.basico",
+        "path": "./syntaxes/basico.tmLanguage.json"
+      }
+    ]
+  }
+}
