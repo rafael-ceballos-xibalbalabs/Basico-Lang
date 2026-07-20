@@ -1,0 +1,3 @@
+variable nuevaVariable = "Mundo"
+variable saludo = "Hola, " + nuevaVariable + "!"
+imprimir(saludo)

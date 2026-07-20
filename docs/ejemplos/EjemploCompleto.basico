@@ -1,0 +1,112 @@
+si 1 > 0 {
+    imprimirLinea("========================================")
+    imprimirLinea("  Basico Lang - ejemplo de uso actual")
+    imprimirLinea("========================================")
+}
+funcion demoVariables() {
+    imprimirLinea("== Variables y tipos primitivos ==")
+    variable nombre = "Ada"
+    variable edad = 32
+    variable activa = verdadero
+    variable vacio
+    imprimirLinea(nombre)
+    imprimirLinea(edad)
+    imprimirLinea(activa)
+    imprimirLinea(vacio)
+}
+funcion demoOperadores() {
+    imprimirLinea("== Operadores aritmeticos y de comparacion ==")
+    variable suma = 2 + 3
+    variable resta = 10 - 4
+    variable producto = 6 * 7
+    variable division = 20 / 4
+    imprimirLinea(suma)
+    imprimirLinea(resta)
+    imprimirLinea(producto)
+    imprimirLinea(division)
+    variable esMenor = 2 < 3
+    variable esMayor = 5 > 3
+    imprimirLinea(esMenor)
+    imprimirLinea(esMayor)
+}
+funcion demoCadenas() {
+    imprimirLinea("== Cadenas de texto ==")
+    variable nombre = "Ada"
+    variable saludo = "Hola, " + nombre + "!"
+    imprimirLinea(saludo)
+    imprimirLinea(saludo.a_mayusculas())
+    imprimirLinea(saludo.a_minusculas())
+    imprimirLinea(saludo.contiene("Ada"))
+    imprimirLinea(saludo.empieza_con("Hola"))
+    imprimirLinea(saludo.termina_con("!"))
+    imprimirLinea(saludo.agregar(" Bienvenida."))
+}
+funcion demoNumeros() {
+    imprimirLinea("== Numeros ==")
+    variable edad = 32
+    variable pi = 3.14
+    imprimirLinea(edad.es_entero())
+    imprimirLinea(pi.es_decimal())
+}
+funcion demoListas() {
+    imprimirLinea("== Listas ==")
+    variable numeros = [1, 2, 3, 4, 5]
+    imprimirLinea(numeros)
+    imprimirLinea(numeros[0])
+    imprimirLinea(numeros.esta_vacia())
+    imprimirLinea(numeros.invertir())
+    imprimirLinea(numeros.unir(", "))
+}
+funcion demoFunciones() {
+    imprimirLinea("== Funciones ==")
+    imprimirLinea("demoFunciones() invocando a demoNumeros():")
+    demoNumeros()
+}
+funcion demoCiclos() {
+    imprimirLinea("== Ciclos ==")
+
+    imprimirLinea("-- repetir (como while: 0+ vueltas) --")
+    variable i = 0
+    repetir i < 5 {
+        imprimirLinea(i)
+        i = i + 1
+    }
+
+    imprimirLinea("-- repetir_mientras (como do-while: 1+ vueltas garantizadas) --")
+    variable intentos = 10
+    repetir_mientras intentos < 3 {
+        imprimirLinea(intentos)
+        intentos = intentos + 1
+    }
+
+    imprimirLinea("-- iterar (como foreach) --")
+    variable frutas = ["manzana", "pera", "uva"]
+    iterar fruta en frutas {
+        imprimirLinea(fruta)
+    }
+    iterar indice, fruta en frutas {
+        si indice > 0 {
+            imprimirLinea("otra fruta mas:")
+        } sino {
+            imprimirLinea("primera fruta:")
+        }
+        imprimirLinea(fruta)
+    }
+
+    imprimirLinea("-- repetir_hasta (como for clasico) --")
+    repetir_hasta variable j = 0; j < 5; j = j + 1 {
+        imprimirLinea(j)
+    }
+}
+funcion principal() {
+    demoVariables()
+    demoOperadores()
+    demoCadenas()
+    demoListas()
+    demoFunciones()
+    demoCiclos()
+    imprimirLinea("========================================")
+    imprimirLinea("  Fin del programa")
+    imprimirLinea("========================================")
+}
+principal()
