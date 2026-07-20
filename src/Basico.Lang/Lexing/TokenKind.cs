@@ -1,0 +1,61 @@
+﻿namespace Basico.Lexing
+{
+    internal enum TokenKind
+    {
+        Identifier,
+        ReservedKeyword,
+        Number,
+        Var,
+        Assign,
+
+        LeftCurlyBrace,
+        RightCurlyBrace,
+        Comma,
+        Colon,
+        SemiColon,
+        OpenSquareBracket,
+        CloseSquareBracket,
+
+        SingleQuote,
+
+        StringLiteral,
+        NumericLiteral,
+        LeftParen,
+        RightParen,
+
+        EOFToken,
+        While,
+        DoWhile,
+        For,
+        ForEach,
+        Function,
+
+        Plus,
+        Minus,
+        Divide,
+        Multiply,
+        Not,
+        Pipe,
+        If,
+        Else,
+        In,
+        True,
+        False,
+        Null,
+        Modulo,
+        Equality,
+        LessThan,
+        GreaterThan,
+        LessThanOrEquals,
+        GreaterThanOrEquals,
+        And,
+        Or,
+        Ampersand,
+        NotEqual,
+        Dot,
+        Pow,
+        EndLine,
+        Struct,
+        Return,
+    }
+}
